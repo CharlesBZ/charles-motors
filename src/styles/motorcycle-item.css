@@ -1,0 +1,93 @@
+.motorcycle__item {
+  border: 1px solid #7c8a9736;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.motorcycle__item-info span i {
+  color: #f9a826;
+  font-size: 1.1rem;
+}
+
+.motorcycle__item-btn {
+  border-radius: 0;
+  border: none;
+  outline: none;
+  background: #000d6b;
+  padding: 8px 0px;
+}
+
+.motorcycle__item-btn a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 500;
+}
+
+.motorcycle__item-btn a:hover {
+  color: #fff;
+}
+.motorcycle__btn-details {
+  background: #f9a826;
+  border-radius: 0px 4px 4px 0px;
+}
+
+.motorcycle__btn-rent {
+  border-radius: 4px 0px 0px 4px;
+}
+
+.motorcycle__item-content h4 {
+  font-size: 1.8rem;
+}
+
+.motorcycle__item-content h6 {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+@media only screen and (max-width: 992px) {
+  .motorcycle__item h4 {
+    font-size: 1.1rem;
+    margin-bottom: 0;
+  }
+
+  .motorcycle__item h6 {
+    font-size: 1rem;
+    margin-top: 10px;
+  }
+
+  .motorcycle__item-info {
+    flex-wrap: wrap;
+  }
+
+  .motorcycle__item-info span {
+    font-size: 0.8rem;
+    justify-content: space-between;
+  }
+
+  .motorcycle__item-btn {
+    padding: 5px 10px;
+    font-size: 0.9rem;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .motorcycle__item h4 {
+    font-size: 1rem;
+  }
+
+  .motorcycle__item h6 {
+    font-size: 0.9rem;
+  }
+
+  .motorcycle__item-info span {
+    font-size: 0.7rem;
+  }
+
+  .motorcycle__item-info span i {
+    font-size: 0.9rem;
+  }
+
+  .motorcycle__item-btn {
+    font-size: 0.8rem;
+  }
+}

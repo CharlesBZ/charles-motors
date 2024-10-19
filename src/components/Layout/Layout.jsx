@@ -1,18 +1,17 @@
-import React, { Fragment } from "react";
-import Header from "../Header/Header.jsx";
-// import Footer from "../Footer/Footer.jsx";
-import Routers from "../../routers/Routers";
+import Header from "../../components/Header/Header.jsx"
+import Footer from "../../components/Footer/Footer.jsx"
+import Routers from "../../routers/Router.js"
 
 const Layout = () => {
   return (
-    <Fragment>
+    <>
       <Header />
       <div>
         <Routers />
       </div>
-      {/* <Footer /> */}
-    </Fragment>
-  );
-};
+      <Footer />
+    </>
+  )
+}
 
-export default Layout;
+export default Layout
