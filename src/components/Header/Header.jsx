@@ -1,6 +1,7 @@
 import React, { useRef } from "react"
 import { Container, Row, Col } from "reactstrap"
 import { Link, NavLink } from "react-router-dom"
+import LogoutButton from "../logoutButton/LogoutButton"
 import "../../styles/header.css"
 
 const navLinks = [
@@ -48,12 +49,19 @@ const Header = () => {
 
             <Col lg="6" md="6" sm="6">
               <div className="header__top__right d-flex align-center justify-content-end gap-3">
-                <Link to="/signin" className="d-flex align-items-center gap-1">
+                <Link to="/login" className="d-flex align-items-center gap-1">
                   <i className="ri-login-circle-line"></i> Login
                 </Link>
 
-                <Link to="/signup" className=" d-flex align-items-center gap-1">
+                <Link
+                  to="/register"
+                  className=" d-flex align-items-center gap-1"
+                >
                   <i className="ri-user-line"></i> Register
+                </Link>
+
+                <Link to="/login" className="d-flex align-items-center gap-1">
+                  <LogoutButton className="ri-login-circle-line " />
                 </Link>
               </div>
             </Col>

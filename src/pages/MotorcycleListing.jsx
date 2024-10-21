@@ -3,6 +3,7 @@ import Helmet from "../components/Helmet/Helmet"
 import CommonSection from "../components/UI/CommonSection"
 import MotorcycleItem from "../components/UI/MotorcycleItem"
 import motorcycleData from "../assets/data/motorcycleData"
+import MotorcycleContent from "../components/MotorcycleContent/MotorcycleContent"
 import { useDispatch, useSelector } from "react-redux"
 
 export default function MotorcycleListing(props) {
@@ -36,6 +37,7 @@ export default function MotorcycleListing(props) {
             </Row>
           </Container>
         </section>
+        <MotorcycleContent />
       </Helmet>
     </>
   )

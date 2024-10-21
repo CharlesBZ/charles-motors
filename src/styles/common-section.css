@@ -1,6 +1,6 @@
 .common__section {
-  background: linear-gradient(rgb(0, 13, 107, 0.6), rgb(0, 13, 107, 0.6)),
-    url("../assets/images/all-images/drive.jpg");
+  background: linear-gradient(rgba(71, 76, 114, 0.6), rgba(88, 93, 138, 0.6)),
+    url("../assets/images/all-images/motorcycles-img/suzuki-GSX250.png");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;

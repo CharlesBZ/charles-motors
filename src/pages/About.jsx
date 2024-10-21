@@ -6,7 +6,7 @@ import AboutSection from "../components/UI/AboutSection"
 import { Container, Row, Col } from "reactstrap"
 import BecomeDriverSection from "../components/UI/BecomeDriverSection"
 
-import driveImg from "../assets/images/all-images/drive.jpg"
+import driveImg from "../assets/images/all-images/motorcycles-img/suzuki-GSX250.png"
 import OurMembers from "../components/UI/OurMembers"
 import "../styles/about.css"
 

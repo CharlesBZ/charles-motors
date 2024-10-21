@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react"
 import {
   Button,
   TextField,
@@ -5,47 +6,50 @@ import {
   InputAdornment,
   IconButton,
 } from "@mui/material"
-import styles from "./signUpPage.module.css"
+import styles from "./loginPage.module.css"
 import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
-import { useState } from "react"
-import { useDispatch } from "react-redux"
-import { registerCertUser } from "../../features/userSlice/userSlice"
+import { useDispatch, useSelector } from "react-redux"
+import { loginUser } from "../../features/auth/authSlice"
 
-export default function SignUpPage() {
+const LoginForm = () => {
   const navigate = useNavigate()
-  const dispatch = useDispatch()
   const [showPassword, setShowPassword] = useState(false)
+  const dispatch = useDispatch()
+  const authStatus = useSelector((state) => state.auth.status)
+  const error = useSelector((state) => state.auth.error)
 
   const handleClickShowPassword = () => setShowPassword((show) => !show)
 
   const handleMouseDownPassword = (event) => event.preventDefault()
 
   const {
-    control,
-    setValue,
     register,
     formState: { errors, isSubmitted },
     handleSubmit,
-    reset,
   } = useForm({
     defaultValues: {
-      Password: "",
-      Email: "",
-      FirstName: "",
-      LastName: "",
+      email: "",
+      password: "",
     },
   })
 
-  const onSubmit = async (data) => {
-    dispatch(registerCertUser(data)).then(function (data) {
-      if (!data.error) navigate("/signIn")
-    })
+  // Submit handler without e.preventDefault
+  const onSubmit = (data) => {
+    dispatch(loginUser(data)) // data contains { email, password }
   }
+
+  // Navigate after successful login
+  useEffect(() => {
+    if (authStatus === "succeeded") {
+      navigate("/home")
+    }
+  }, [authStatus, navigate])
 
   return (
     <div className={styles.container}>
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+        {/* Email Input */}
         <Typography
           sx={{
             fontSize: "16px",
@@ -53,68 +57,27 @@ export default function SignUpPage() {
             fontWeight: 700,
           }}
         >
-          {" "}
-          First Name{" "}
+          Email
         </Typography>
         <TextField
-          {...register("FirstName", {
-            required: "First Name is required",
-          })}
-          placeholder={"First Name"}
-          error={isSubmitted && !!errors.FirstName}
-          helperText={isSubmitted && errors.FirstName?.message}
-          sx={{
-            width: "100%",
-          }}
-        />
-        <br />
-        <br />
-        <Typography
-          sx={{
-            fontSize: "16px",
-            marginBottom: "8px",
-            fontWeight: 700,
-          }}
-        >
-          {" "}
-          Last Name{" "}
-        </Typography>
-        <TextField
-          {...register("LastName", {
-            required: "Last Name is required",
-          })}
-          placeholder={"Last Name"}
-          error={isSubmitted && !!errors.LastName}
-          helperText={isSubmitted && errors.LastName?.message}
-          sx={{
-            width: "100%",
-          }}
-        />
-        <br />
-        <br />
-        <Typography
-          sx={{
-            fontSize: "16px",
-            marginBottom: "8px",
-            fontWeight: 700,
-          }}
-        >
-          {" "}
-          Email{" "}
-        </Typography>
-        <TextField
-          {...register("Email", {
+          {...register("email", {
             required: "Email is required",
+            pattern: {
+              value: /^\S+@\S+$/i,
+              message: "Invalid email address",
+            },
           })}
-          placeholder={"Email"}
-          error={isSubmitted && !!errors.Email}
-          helperText={isSubmitted && errors.Email?.message}
+          placeholder="Email"
+          error={isSubmitted && !!errors.email}
+          helperText={isSubmitted && errors.email?.message}
           sx={{
             width: "100%",
           }}
         />
         <br />
         <br />
+
+        {/* Password Input */}
         <Typography
           sx={{
             fontSize: "16px",
@@ -122,17 +85,16 @@ export default function SignUpPage() {
             fontWeight: 700,
           }}
         >
-          {" "}
           Password
         </Typography>
         <TextField
-          {...register("Password", {
+          {...register("password", {
             required: "Password is required",
           })}
           placeholder="Password"
           type={showPassword ? "text" : "password"}
-          error={isSubmitted && !!errors.Password}
-          helperText={isSubmitted && errors.Password?.message}
+          error={isSubmitted && !!errors.password}
+          helperText={isSubmitted && errors.password?.message}
           sx={{
             width: "100%",
           }}
@@ -155,24 +117,34 @@ export default function SignUpPage() {
             ),
           }}
         />
+        <br />
+        <br />
+
+        {/* Login Button */}
         <Button
+          variant="contained"
+          sx={{ marginTop: "16px", width: "100%" }}
           type="submit"
-          variant="contained"
-          sx={{ marginTop: "16px", width: "100%" }}
+          disabled={authStatus === "loading"}
         >
-          {" "}
-          Sign Up{" "}
+          {authStatus === "loading" ? "Logging in..." : "Login"}
         </Button>
+
+        {/* Sign Up Button */}
         <Button
-          type="button"
-          onClick={() => navigate("/signin")}
           variant="contained"
+          type="button"
           sx={{ marginTop: "16px", width: "100%" }}
+          onClick={() => navigate("/register")}
         >
-          {" "}
-          Already have an account?{" "}
+          Sign Up
         </Button>
       </form>
+
+      {/* Display error if any */}
+      {error && <p>{error}</p>}
     </div>
   )
 }
+
+export default LoginForm

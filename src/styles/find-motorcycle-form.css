@@ -1,6 +1,6 @@
 .find__motorcycles-left {
   background: linear-gradient(rgba(249, 168, 38, 0.9), rgba(249, 168, 38, 0.9)),
-  url("../assets/images/all-images/kawasaki.png");
+    url("../assets/images/all-images/kawasaki.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -74,7 +74,7 @@
 }
 
 .find__motorcycle-btn {
-  background: #000d6b !important;
+  background: #3e396b !important;
   color: #fff !important;
   font-weight: 600;
   padding: 8px 15px;
@@ -106,7 +106,6 @@
   .hero__form {
     bottom: -100px;
   }
-
 }
 
 @media only screen and (max-width: 768px) {
@@ -134,9 +133,9 @@
   }
 
   .select__group {
-   width: 100%;
-   padding-right: 10px;
-   font-size: 0.7rem;
+    width: 100%;
+    padding-right: 10px;
+    font-size: 0.7rem;
   }
 
   .find__motorcycles-btn {

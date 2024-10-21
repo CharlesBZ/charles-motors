@@ -5,14 +5,14 @@ import {
   InputAdornment,
   IconButton,
 } from "@mui/material"
-import styles from "./signInPage.module.css"
+import styles from "./registerPage.module.css"
 import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
-import { useEffect, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { signInUser } from "../../features/userSlice/userSlice"
+import { useState } from "react"
+import { useDispatch } from "react-redux"
+import { registerUser } from "../../features/auth/authSlice"
 
-export default function SignInPage() {
+export default function RegisterPage() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const [showPassword, setShowPassword] = useState(false)
@@ -32,16 +32,66 @@ export default function SignInPage() {
     defaultValues: {
       Password: "",
       Email: "",
+      FirstName: "",
+      LastName: "",
     },
   })
 
   const onSubmit = async (data) => {
-    dispatch(signInUser(data))
+    dispatch(registerUser(data)).then(function (data) {
+      if (!data.error) navigate("/signIn")
+    })
   }
 
   return (
     <div className={styles.container}>
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+        <Typography
+          sx={{
+            fontSize: "16px",
+            marginBottom: "8px",
+            fontWeight: 700,
+          }}
+        >
+          {" "}
+          First Name{" "}
+        </Typography>
+        <TextField
+          {...register("FirstName", {
+            required: "First Name is required",
+          })}
+          placeholder={"First Name"}
+          error={isSubmitted && !!errors.FirstName}
+          helperText={isSubmitted && errors.FirstName?.message}
+          sx={{
+            width: "100%",
+          }}
+        />
+        <br />
+        <br />
+        <Typography
+          sx={{
+            fontSize: "16px",
+            marginBottom: "8px",
+            fontWeight: 700,
+          }}
+        >
+          {" "}
+          Last Name{" "}
+        </Typography>
+        <TextField
+          {...register("LastName", {
+            required: "Last Name is required",
+          })}
+          placeholder={"Last Name"}
+          error={isSubmitted && !!errors.LastName}
+          helperText={isSubmitted && errors.LastName?.message}
+          sx={{
+            width: "100%",
+          }}
+        />
+        <br />
+        <br />
         <Typography
           sx={{
             fontSize: "16px",
@@ -106,19 +156,21 @@ export default function SignInPage() {
           }}
         />
         <Button
+          type="submit"
           variant="contained"
           sx={{ marginTop: "16px", width: "100%" }}
-          type="submit"
         >
-          Sign In
+          {" "}
+          Sign Up{" "}
         </Button>
         <Button
-          variant="contained"
           type="button"
+          onClick={() => navigate("/signin")}
+          variant="contained"
           sx={{ marginTop: "16px", width: "100%" }}
-          onClick={() => navigate("/signup")}
         >
-          Sign Up
+          {" "}
+          Already have an account?{" "}
         </Button>
       </form>
     </div>

@@ -10,24 +10,23 @@ import {
   PURGE,
   REGISTER,
 } from "redux-persist/es/constants"
-import loginSlice from "./features/userSlice/userSlice"
+import authReducer from "./features/auth/authSlice"
 import motorcycleSlice from "./features/motorcycle/motorcycleSlice"
 
 const rootReducer = combineReducers({
-  user: loginSlice,
+  auth: authReducer,
   motorcycle: motorcycleSlice,
 })
 
 const persistConfig = {
-  key: "charlesMotorsRoot",
+  key: "auth",
   storage,
-  whitelist: ["user"],
 }
 
-const persistedReducer = persistReducer(persistConfig, rootReducer)
+const persistedAuthReducer = persistReducer(persistConfig, rootReducer)
 
 export const store = configureStore({
-  reducer: persistedReducer,
+  reducer: persistedAuthReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {

@@ -5,7 +5,7 @@
 
 .slider__item-01 {
   background: linear-gradient(rgba(0, 13, 107, 0.5), rgba(0, 13, 107, 0.5)),
-  url("../assets/images/slider-img/harley-davidson.png");
+    url("../assets/images/slider-img/harley-davidson.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -13,7 +13,7 @@
 
 .slider__item-02 {
   background: linear-gradient(rgba(0, 13, 107, 0.5), rgba(0, 13, 107, 0.5)),
-  url("../assets/images/slider-img/indian.png");
+    url("../assets/images/slider-img/indian.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -21,7 +21,7 @@
 
 .slider__item-03 {
   background: linear-gradient(rgba(0, 13, 107, 0.5), rgba(0, 13, 107, 0.5)),
-  url("../assets/images/slider-img/suzukigsx-r125.png");
+    url("../assets/images/slider-img/suzukigsx-r125.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -42,7 +42,7 @@
 
 .reserve__btn {
   background: #fff !important;
-  color: #000d6b !important;
+  color: #3e396b !important;
   border: none;
   outline: none;
 }
@@ -50,11 +50,11 @@
 .reserve__btn a {
   text-decoration: none;
   font-weight: 600;
-  color: #000d6b;
+  color: #3e396b;
 }
 
 .reserve__btn a:hover {
-  background: #000d6b;
+  background: #3e396b;
   color: #fff;
 }
 
